@@ -1,5 +1,4 @@
-# TODO: Create legend for categories
-# TODO: Find way to open addresses in google maps
+# TODO: Find way to deploy so that it is viewable by whole family
 
 import folium
 import pandas as pd
@@ -12,6 +11,7 @@ def add_location_to_map(map, category, latitude, longitude, text):
         icon=folium.Icon(icon=get_icon(category), prefix='fa'),
         popup=text
     ).add_to(map)
+    marker.bindTooltip("text here", {permanent: true, offset: [0, 12]});
 
 
 def append_full_address_to_dataframe(locations_dataframe):
@@ -53,6 +53,7 @@ def get_icon(category):
         icon = "building"
     return icon
 
+
 def read_location_list():
     locations_df = pd.read_csv("addresses.csv")
     return locations_df
@@ -60,6 +61,7 @@ def read_location_list():
 
 def main():
     map = create_base_map()
+
     # # Temporary variables to test add_location_to_map()
     # category = "home"
     # location = [35.84, -78.65]
